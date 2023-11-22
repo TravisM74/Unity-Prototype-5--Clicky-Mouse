@@ -53,8 +53,14 @@ public class Target : MonoBehaviour
     }
     private void OnTriggerEnter(Collider col){
         Destroy(gameObject);
+
         if (!gameObject.CompareTag("Bad")){
-            gameManager.GameOver();
+            int newLives = gameManager.lives -1;
+            gameManager.UpdateLives(newLives);
+            if (gameManager.lives < 1){
+                gameManager.GameOver();
+
+            }
         }
     }
     private Vector3 RandomForceUp(){
